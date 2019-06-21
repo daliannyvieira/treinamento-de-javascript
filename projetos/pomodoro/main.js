@@ -5,21 +5,15 @@ let currentType;
 let currentTime;
 let playing;
 let counting;
-let defaultPomodoro = 1500
-let defaultInterval = 300
-let step = 0;
+let foco = 1500
+let intervalo = 300
+let pomodoros = 0;
 
 function changeType(type) {
-  if (type === 'pomodoro') {
-    currentTime = defaultPomodoro;
-    message.innerHTML = "Hora do foco!";
-  }
-  if (type === 'intervalo') {
-    currentTime = defaultInterval;
-    message.innerHTML = "Hora do intervalo :)";
-  }
+  currentTime = eval(type);
   currentType = type
-  timer.value = formatTime(timer.value);
+  message.innerHTML = "Hora do " + type;
+  timer.innerHTML = formatTime();
 }
 
 function play () {
@@ -27,7 +21,7 @@ function play () {
     playing = true
     section.classList.add('playing');
     counting = setInterval(function() {
-      startCounting(timer.value)
+      startCounting()
     }, 1000);
   }
 }
@@ -36,20 +30,21 @@ function startCounting() {
   section.classList.add('playing');
   if (currentTime > 0) {
     currentTime = currentTime - 1;
-    timer.value = formatTime();
+    timer.innerHTML = formatTime(currentTime);
   }
-  else if (currentTime === 0 && currentType == 'pomodoro') {
+  else if (currentTime === 0 && currentType == 'foco') {
     changeType('intervalo');
-    step = step + 1;
+    pomodoros = pomodoros + 1;
   }
-  else if (step >= 4) {
+  else if (pomodoros >= 4) {
     clearInterval(counting);
     playing = false;
-    message.innerHTML = "Acabou! Você fez " + step + " pomodoros :)";
-    step = 0;
+    section.classList.remove('playing');
+    message.innerHTML = "Acabou! Você fez " + pomodoros + " pomodoros :)";
+    pomodoros = 0;
   }
   else {
-    changeType('pomodoro');
+    changeType('foco');
     play();
   }
 }
@@ -61,8 +56,8 @@ function pause() {
 }
 
 function formatTime() {
-  let minutes = Math.floor(currentTime % 3600 / 60);
-  let seconds = Math.floor(currentTime % 3600 % 60);
+  let minutes = Math.floor(currentTime / 60 % 60);
+  let seconds = Math.floor(currentTime % 60);
 
   return (minutes < 10 ? "0" : "") + minutes + ':' + (seconds < 10 ? "0" : "") + seconds
 }
