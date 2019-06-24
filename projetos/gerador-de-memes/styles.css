@@ -1,0 +1,26 @@
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background-color: pink;
+	font-family:  sans-serif;
+	font-weight: bold;
+}
+
+img {
+	max-width: 100%;
+}
+
+button {
+	background: none;
+	padding: 1rem;
+	border: 1px solid white;
+	font-weight: bold;
+	color: white;
+}
+
+a {
+	padding: 1rem;
+	color: white;
+}
