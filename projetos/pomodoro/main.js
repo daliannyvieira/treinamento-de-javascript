@@ -19,7 +19,9 @@ function changeType(type) {
 function play () {
   if (!playing) {
     playing = true
+
     section.classList.add('playing');
+    
     counting = setInterval(function() {
       startCounting()
     }, 1000);
@@ -27,10 +29,9 @@ function play () {
 }
 
 function startCounting() {
-  section.classList.add('playing');
   if (currentTime > 0) {
     currentTime = currentTime - 1;
-    timer.innerHTML = formatTime(currentTime);
+    timer.innerHTML = formatTime();
   }
   else if (currentTime === 0 && currentType == 'foco') {
     changeType('intervalo');
