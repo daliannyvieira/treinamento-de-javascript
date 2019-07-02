@@ -103,6 +103,7 @@ function cleanValues () {
 	form.elements.description.value = ''
 	form.elements.category.value = ''
 	form.elements.title.value = ''
+	form.elements.color.value = "#fab71f"
 }
 
 document.body.appendChild(cards);
