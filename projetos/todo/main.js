@@ -31,18 +31,33 @@ function render() {
 		let description = renderItem("p", note.description);
 		let category = renderItem("p", note.category);
 		let color = renderItem("p", note.color);
-
+		let button = renderItem("button", "delete");
 
 		card.appendChild(title);
 		card.appendChild(description);
 		card.appendChild(category);
 		card.appendChild(color);
+		card.appendChild(button);
 
 		card.style.backgroundColor = note.color;
 
 		cards.appendChild(card);
+
+		button.addEventListener("click", function(){
+			notes = arrayRemove(notes, note);
+			render()
+		});
 	});
 };
+
+
+function arrayRemove(arr, value) {
+
+   return arr.filter(function(ele){
+       return ele != value;
+   });
+
+}
 
 function renderItem (element, text) {
 	let elementEl = document.createElement(element);
@@ -52,5 +67,6 @@ function renderItem (element, text) {
 
 	return elementEl;
 }
+
 
 document.body.appendChild(cards);
