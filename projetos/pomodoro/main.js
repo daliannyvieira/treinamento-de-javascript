@@ -4,12 +4,12 @@ let message = document.getElementById('message');
 let currentType;
 let currentTime;
 let playing;
-let counting;
+let counter;
 let foco = 1500
 let intervalo = 300
 let pomodoros = 0;
 
-function changeType(type) {
+function setupPomodoro(type) {
   currentTime = eval(type);
   currentType = type
   message.innerHTML = "Hora do " + type;
@@ -22,7 +22,7 @@ function play () {
 
     section.classList.add('playing');
     
-    counting = setInterval(function() {
+    counter = setInterval(function() {
       startCounting()
     }, 1000);
   }
@@ -38,7 +38,7 @@ function startCounting() {
     pomodoros = pomodoros + 1;
   }
   else if (pomodoros >= 4) {
-    clearInterval(counting);
+    clearInterval(counter);
     playing = false;
     section.classList.remove('playing');
     message.innerHTML = "Acabou! Você fez " + pomodoros + " pomodoros :)";
@@ -53,7 +53,7 @@ function startCounting() {
 function pause() {
   playing = false
   section.classList.remove('playing');
-  clearInterval(counting)
+  clearInterval(counter)
 }
 
 function formatTime() {
