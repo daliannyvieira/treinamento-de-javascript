@@ -43,6 +43,7 @@ function render() {
 
 	notes.map((note, index) => {
 		let card = document.createElement("li");
+		card.style.backgroundColor = note.color;
 
 		let title = renderItem("h2", note.title);
 		let description = renderItem("p", note.description);
@@ -50,9 +51,14 @@ function render() {
 		let color = renderItem("p", note.color);
 
 		let buttons = document.createElement("div");
-
 		let buttonEdit = renderItem("button", "edit");
 		let buttonDelete = renderItem("button", "delete");
+
+		handleEditNote(buttonEdit, note, index)
+		handleDeleteNote(buttonDelete, note)
+
+		buttons.appendChild(buttonDelete);
+		buttons.appendChild(buttonEdit);
 
 		card.appendChild(title);
 		card.appendChild(description);
@@ -60,29 +66,26 @@ function render() {
 		card.appendChild(color);
 		card.appendChild(buttons);
 
-		buttons.appendChild(buttonDelete);
-		buttons.appendChild(buttonEdit);
-
-		card.style.backgroundColor = note.color;
-
 		cards.appendChild(card);
-
-		buttonDelete.addEventListener("click", function(){
-			notes = arrayRemove(notes, note);
-			render()
-		});
-
-		buttonEdit.addEventListener("click", function(){
-			form.elements.description.value = note.description
-			form.elements.category.value = note.category
-			form.elements.title.value = note.title
-			form.elements.color.value = note.color
-			isEditing = index
-		});
-
 	});
 };
 
+function handleDeleteNote(buttonDelete, note, index) {
+	buttonDelete.addEventListener("click", function(){
+		notes = arrayRemove(notes, note);
+		render()
+	});
+}
+
+function handleEditNote(buttonEdit, note, index) {
+	buttonEdit.addEventListener("click", function(){
+		form.elements.description.value = note.description
+		form.elements.category.value = note.category
+		form.elements.title.value = note.title
+		form.elements.color.value = note.color
+		isEditing = index
+	});
+}
 
 function arrayRemove(notes, note) {
 	return notes.filter(function(el){
