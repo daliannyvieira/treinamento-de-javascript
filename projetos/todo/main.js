@@ -7,7 +7,7 @@ form.addEventListener("submit", event => {
 	event.preventDefault();
 
 	if (typeof(isEditing) == 'number') {
-		edit()
+		handleEdit()
 	}
 
 	else {
@@ -23,7 +23,7 @@ form.addEventListener("submit", event => {
 	}
 });
 
-function edit () {
+function handleEdit () {
 	notes[isEditing] = {
 		title: form.elements.title.value,
 		description: form.elements.description.value,
@@ -54,8 +54,8 @@ function render() {
 		let buttonEdit = renderItem("button", "edit");
 		let buttonDelete = renderItem("button", "delete");
 
-		handleEditNote(buttonEdit, note, index)
-		handleDeleteNote(buttonDelete, note)
+		handleEditButton(buttonEdit, note, index)
+		handleDeleteButton(buttonDelete, note)
 
 		buttons.appendChild(buttonDelete);
 		buttons.appendChild(buttonEdit);
@@ -70,20 +70,19 @@ function render() {
 	});
 };
 
-function handleDeleteNote(buttonDelete, note, index) {
+function renderItem (el, txt) {
+	let elementEl = document.createElement(el);
+	let textNode = document.createTextNode(txt);
+
+	elementEl.appendChild(textNode)
+
+	return elementEl;
+}
+
+function handleDeleteButton(buttonDelete, note, index) {
 	buttonDelete.addEventListener("click", function(){
 		notes = arrayRemove(notes, note);
 		render()
-	});
-}
-
-function handleEditNote(buttonEdit, note, index) {
-	buttonEdit.addEventListener("click", function(){
-		form.elements.description.value = note.description
-		form.elements.category.value = note.category
-		form.elements.title.value = note.title
-		form.elements.color.value = note.color
-		isEditing = index
 	});
 }
 
@@ -93,13 +92,14 @@ function arrayRemove(notes, note) {
 	});
 }
 
-function renderItem (el, txt) {
-	let elementEl = document.createElement(el);
-	let textNode = document.createTextNode(txt);
-
-	elementEl.appendChild(textNode)
-
-	return elementEl;
+function handleEditButton(buttonEdit, note, index) {
+	buttonEdit.addEventListener("click", function(){
+		form.elements.description.value = note.description
+		form.elements.category.value = note.category
+		form.elements.title.value = note.title
+		form.elements.color.value = note.color
+		isEditing = index
+	});
 }
 
 function cleanValues () {
