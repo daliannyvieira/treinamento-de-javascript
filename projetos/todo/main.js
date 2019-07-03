@@ -47,13 +47,15 @@ function renderItem(note, index) {
 	let buttonDelete = createTag("button", "delete");
 	let buttonCheck = createTag("button", note.check ? "concluído" : "a fazer");
 
-	handleEditButton(buttonEdit, note, index)
-	handleDeleteButton(buttonDelete, note)
-	handleCheckButton(buttonCheck, note)
+	if (!note.check) {
+		buttons.appendChild(buttonDelete);
+		buttons.appendChild(buttonEdit);
+		handleEditButton(buttonEdit, note, index);
+		handleDeleteButton(buttonDelete, note);
+	}
 
-	buttons.appendChild(buttonDelete);
-	buttons.appendChild(buttonEdit);
 	buttons.appendChild(buttonCheck);
+	handleCheckButton(buttonCheck, note);
 
 	card.appendChild(title);
 	card.appendChild(description);
