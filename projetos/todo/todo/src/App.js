@@ -93,6 +93,37 @@ class App extends React.Component {
     });
   }
 
+  renderList = () => {
+    return this.state.cards.map((item, index) => {
+      return (
+        <li
+          style={{ backgroundColor: item.color}}
+          key={index}
+        >
+          <p>{item.title}</p>
+          <p>{item.description}</p>
+          <p>{item.category}</p>
+          <p>{item.color}</p>
+          <div>
+            {!item.check && (
+              <button onClick={() => this.handleEdit(item, index)}>
+                edit
+              </button>
+            )}
+            {!item.check && (
+              <button onClick={() => this.handleDelete(item)}>
+                delete
+              </button>
+            )}
+            <button onClick={() => this.handleCheck(index)}>
+              {item.check ? "concluído" : "a fazer"}
+            </button>
+          </div>
+        </li>
+      )
+    })
+  }
+
   render() {
     return (
       <main>
@@ -140,34 +171,7 @@ class App extends React.Component {
           <button>Submit</button>
         </form>
         <ul>
-          {this.state.cards.map((item, index) => {
-            return (
-              <li
-                style={{ backgroundColor: item.color}}
-                key={index}
-              >
-                <p>{item.title}</p>
-                <p>{item.description}</p>
-                <p>{item.category}</p>
-                <p>{item.color}</p>
-                <div>
-                  {!item.check && (
-                    <button onClick={() => this.handleEdit(item, index)}>
-                      edit
-                    </button>
-                  )}
-                  {!item.check && (
-                    <button onClick={() => this.handleDelete(item)}>
-                      delete
-                    </button>
-                  )}
-                  <button onClick={() => this.handleCheck(index)}>
-                    {item.check ? "concluído" : "a fazer"}
-                  </button>
-                </div>
-              </li>
-            )
-          })}
+          {this.renderList()}
         </ul>
       </main>
     )
