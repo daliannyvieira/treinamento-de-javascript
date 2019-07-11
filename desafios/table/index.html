@@ -30,7 +30,7 @@
     table.appendChild(header);
 
     MOUNTAINS.map((montain) => {
-      let body = createBody(montain)
+      let body = createRows(montain)
       table.appendChild(body);
     });
 
@@ -49,7 +49,7 @@
     return header
   }
 
-  function createBody(montain) {
+  function createRows(montain) {
     let body = document.createElement("tr");
 
     FIELDS.map((field) => {

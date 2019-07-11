@@ -23,6 +23,7 @@ function play () {
     section.classList.add('playing');
     
     counter = setInterval(function() {
+      console.log('1 segundo')
       startCounting()
     }, 1000);
   }
@@ -34,7 +35,7 @@ function startCounting() {
     timer.innerHTML = formatTime();
   }
   else if (currentTime === 0 && currentType == 'foco') {
-    changeType('intervalo');
+    setupPomodoro('intervalo');
     pomodoros = pomodoros + 1;
   }
   else if (pomodoros >= 4) {
@@ -45,7 +46,7 @@ function startCounting() {
     pomodoros = 0;
   }
   else {
-    changeType('foco');
+    setupPomodoro('foco');
     play();
   }
 }
