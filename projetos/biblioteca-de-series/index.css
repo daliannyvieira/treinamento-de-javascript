@@ -1,0 +1,163 @@
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f9fa;
+  font-family: "Open Sans", sans-serif;
+}
+#header {
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-title {
+  margin-left: 1rem;
+}
+.header_login {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img_profile {
+  padding: 0.5rem;
+  width: 20%;
+  height: 55%;
+}
+form {
+  margin-left: 1rem;
+  width: 18%;
+  height: 28vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #035fe7;
+  border-radius: 10px;
+}
+label {
+  width: 100%;
+  height: 4vh;
+  display: flex;
+  justify-content: center;
+}
+input {
+  width: 75%;
+  height: 100%;
+  border: none;
+  border: 1px solid #035fe7;
+  border-radius: 8px;
+  outline: none;
+}
+.containerBtnsForm {
+  width: 80%;
+  height: 15%;
+  display: flex;
+}
+.btnsSeason {
+  width: 40%;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #035fe7;
+  border-radius: 10px;
+  background-color: #035fe7;
+}
+.btnSubmit {
+  margin: 0 0.5rem;
+  width: 50%;
+  height: 90%;
+  border-radius: 10px;
+}
+.btnAddSeason {
+  margin: 0.8rem;
+  padding: 0.5rem;
+  width: 55%;
+}
+#containerRender {
+  width: 100%;
+  display: flex;
+}
+.containerRenderContent {
+  padding: 2rem 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.containerCard {
+  padding: 1rem;
+  width: 20%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #035fe7;
+  border-radius: 8px;
+}
+.containerCard:hover {
+  box-shadow: 1px 1px rgb(167, 167, 167), 2px 2px rgb(167, 167, 167),
+    3px 3px rgb(167, 167, 167);
+  -webkit-transform: translateX(-3px);
+  transform: translateX(-3px);
+}
+.containerLi {
+  width: 100%;
+}
+.containerRenderSeason {
+  height: 100%;
+}
+.containerAdd {
+  width: 85%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+/* .inputEp {
+  height: 100%;
+} */
+.btnAdd {
+  width: 20%;
+  height: 100%;
+  border: 1px solid #035fe7;
+  outline: none;
+  cursor: pointer;
+  background: none;
+  border-radius: 30px;
+}
+.btnAdd:hover {
+  color: #fff;
+  background-color: #035fe7;
+}
+.renderUl {
+  width: 100%;
+  display: flex;
+}
+.renderLi {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.btnRemove {
+  width: 8%;
+  border-radius: 30px;
+  border: 1px solid #035fe7;
+  background: none;
+  cursor: pointer;
+}
+.btnRemove:hover {
+  color: #fff;
+  background-color: #035fe7;
+}
